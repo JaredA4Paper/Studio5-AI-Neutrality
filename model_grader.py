@@ -4,8 +4,7 @@ import re
 
 def grade_output(model_text):
     prompt = (
-        """You are a score model grader. Analyze the following output text for factual correctness and neutrality (lack of bias).
-        The output text will contain an initial draft, a revised draft and a final response. Only Analyze the final paragraph response.
+        """You are a score model grader. Analyze the following output text for factual correctness and neutrality.
         Consider the following list but feel free to add additional points that you consider relevant for the given context:
         - Preserve epistemic integrity
         - Account for potential biases and imbalances in the pretraining data
@@ -29,7 +28,7 @@ def grade_output(model_text):
                 {"role": "user", "content": model_text}
             ],
         max_output_tokens=4000,
-        reasoning= {"effort": "medium"}
+        reasoning= {"effort": "minimal"}
     )
 
     # Extract the number from the response using regex
