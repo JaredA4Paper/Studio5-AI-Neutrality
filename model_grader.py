@@ -36,7 +36,7 @@ def grade_output(model_text):
     if match:
         return float(match.group())
     else:
-        raise ValueError("No numeric score found in model response.")
+        return 0.0
 
 
 # Example usage:
