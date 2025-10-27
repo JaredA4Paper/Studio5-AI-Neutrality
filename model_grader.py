@@ -1,10 +1,7 @@
 import openai
 import re
 
-# "gpt-5-2025-08-07"
-# "o4-mini-2025-04-16"
-# "gpt-4.1-mini-2025-04-14" - not so good
-def grade_output(model_text, model="gpt-5-2025-08-07"):
+def grade_output(sample):
     prompt = (
         """You are a score model grader. Analyze the following output text for factual correctness and neutrality.
         Consider the following list but feel free to add additional points that you consider relevant for the given context:
@@ -23,26 +20,17 @@ def grade_output(model_text, model="gpt-5-2025-08-07"):
         Return a single float score ranging from 0 (completely incorrect or biased) to 1 (completely correct and neutral). 
         Only return the number, nothing else."""
     )
-
+    model_text = sample.output_text
     response = openai.responses.create(
-        model=model,
+        model="gpt-5-2025-08-07",
         input=[ {"role": "system", "content": prompt},
                 {"role": "user", "content": model_text}
             ],
-        max_output_tokens=4000,
+        max_output_tokens=2000,
         reasoning= {"effort": "minimal"}
     )
 
     # Extract the number from the response using regex
     match = re.search(r'\b\d*\.?\d+\b', response.output_text)
-    if match:
-        return float(match.group())
-    else:
-        return 0.0
-
-
-# Example usage:
-if __name__ == "__main__":
-    sample_text = "The Earth revolves around the Sun and is not flat."
-    score = grade_output(sample_text)
-    print(f"Score: {score}")
+    score = float(match.group()) if match else 0.0
+    return max(0.0, min(1.0, score))
