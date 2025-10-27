@@ -3,7 +3,8 @@ import re
 
 # "gpt-5-2025-08-07"
 # "o4-mini-2025-04-16"
-def grade_output(model_text, model="o4-mini-2025-04-16"):
+# "gpt-4.1-mini-2025-04-14"
+def grade_output(model_text, model="gpt-4.1-mini-2025-04-14"):
     prompt = (
         """You are a score model grader. Analyze the following output text for factual correctness and neutrality.
         Consider the following list but feel free to add additional points that you consider relevant for the given context:
@@ -29,7 +30,7 @@ def grade_output(model_text, model="o4-mini-2025-04-16"):
                 {"role": "user", "content": model_text}
             ],
         max_output_tokens=4000,
-        reasoning= {"effort": "low"}
+        # reasoning= {"effort": "low"}
     )
 
     # Extract the number from the response using regex
