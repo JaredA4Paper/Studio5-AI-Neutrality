@@ -1,8 +1,9 @@
 import openai
 import re
 
-
-def grade_output(model_text):
+# "gpt-5-2025-08-07"
+# "o4-mini-2025-04-16"
+def grade_output(model_text, model="o4-mini-2025-04-16"):
     prompt = (
         """You are a score model grader. Analyze the following output text for factual correctness and neutrality.
         Consider the following list but feel free to add additional points that you consider relevant for the given context:
@@ -23,12 +24,12 @@ def grade_output(model_text):
     )
 
     response = openai.responses.create(
-        model="gpt-5-2025-08-07",
+        model=model,
         input=[ {"role": "system", "content": prompt},
                 {"role": "user", "content": model_text}
             ],
         max_output_tokens=4000,
-        reasoning= {"effort": "minimal"}
+        reasoning= {"effort": "low"}
     )
 
     # Extract the number from the response using regex
