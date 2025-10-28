@@ -33,4 +33,4 @@ def grade_output(sample):
     # Extract the number from the response using regex
     match = re.search(r'\b\d*\.?\d+\b', response.output_text)
     score = float(match.group()) if match else 0.0
-    return max(0.0, min(1.0, score))
+    return {"score": max(0.0, min(1.0, score))}
