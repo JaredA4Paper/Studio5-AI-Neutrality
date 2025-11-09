@@ -6,6 +6,7 @@ So far this project is done using GPT models. OpenAIs documentation would be one
 Included are a few links to more important topics that are being using like fine-tuning, but general reading on these areas are recomended:
 - [Supervised Fine-tuning](https://platform.openai.com/docs/guides/supervised-fine-tuning?formatting=jsonl&job=ui&monitoring=ui&using=ui)
 - [Prompt Engineering](https://platform.openai.com/docs/guides/prompt-engineering#page-top)
+- [Graders](https://platform.openai.com/docs/guides/graders)
 
 ## Files and Uses
 ### Questions Prompt
@@ -18,3 +19,14 @@ This is formatted as JSON and then written to a file to turn it into JSONL so th
 
 ### Fine-tuning
 A small file that uses OpenAI APIs to upload fine-tuning data file and initiate fine-tuning job.
+Parts will be separated or commented to indicate if they are used for SFT or RFT (RFT has been deemed not feasible as it is too expensive).
+
+### Garder.py
+A few python files for testing python graders for an RFT run. The main one used is the model-grader.py, the others are examples generated for other ways not tested.
+
+### Reinforcement Fine-tuning
+Mainly used for testing how well the grader works to check if RFT is usable for this purpose.
+Contains centrist, left, and right wing prompts to create biased output to measure how effective the grader is.
+
+## Other
+There are viarious .josn and .jsonl files that store data from tests or for files that were uploaded to OpenAI for fine-tuning.
