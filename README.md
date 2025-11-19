@@ -8,6 +8,9 @@ Included are a few links to more important topics that are being using like fine
 - [Prompt Engineering](https://platform.openai.com/docs/guides/prompt-engineering#page-top)
 - [Graders](https://platform.openai.com/docs/guides/graders)
 
+If you wish to read more on what this is originally based off:
+- [The Political Preferences of LLMs](https://arxiv.org/abs/2402.01789)
+
 ## Files and Uses
 ### Questions Prompt
 Used to generate questions from standings/viewpoints of different American political parties (Centre/Right/Left). 
